@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Интернет-магазин</title>
+</head>
+<body>
+  <h1>Каталог товаров</h1>
+  <div id="products"></div>
+
+  <script>
+    fetch('/api/products')
+      .then(response => response.json())
+      .then(products => {
+        const productsHtml = products.map(product => {
+          return `
+            <div>
+              <h2>${product.name}</h2>
+              <p>Цена: ${product.price}</p>
+              <p>Описание: ${product.description}</p>
+              <p>Категории: ${product.categories.join(', ')}</p>
+            </div>
+          `;
+        }).join('');
+        document.getElementById('products').innerHTML = productsHtml;
+      });
+  </script>
+</body>
+</html>

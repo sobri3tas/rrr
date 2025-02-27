@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Банан",
+    "price": 50,
+    "description": "Сытный фрукт",
+    "categories": [
+      "Еда",
+      "Фрукты"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Говядина",
+    "price": 1000,
+    "description": "Мясо коровы",
+    "categories": [
+      "Еда",
+      "Мясо"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Яблоко",
+    "price": 40,
+    "description": "Несытный фрукт",
+    "categories": [
+      "Еда",
+      "Фрукты"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Зубная щетка",
+    "price": 750,
+    "description": "хз",
+    "categories": [
+      "Хозтовары"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Тарелка",
+    "price": 1800,
+    "description": "хз",
+    "categories": [
+      "Посуда"
+    ]
+  }
+]

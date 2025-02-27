@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Панель администратора</title>
+</head>
+<body>
+  <h1>Панель администратора</h1>
+  <form id="add-product-form">
+    <label>Название товара:</label>
+    <input type="text" name="name">
+    <label>Цена товара:</label>
+    <input type="number" name="price">
+    <label>Описание товара:</label>
+    <textarea name="description"></textarea>
+    <label>Категории:</label>
+    <input type="text" name="categories">
+    <button>Добавить товар</button>
+  </form>
+  
+  <form id="edit-product-form">
+    <label>Идентификатор товара:</label>
+    <input type="number" name="id">
+    <label>Название товара:</label>
+    <input type="text" name="name">
+    <label>Цена товара:</label>
+    <input type="number" name="price">
+    <label>Описание товара:</label>
+    <textarea name="description"></textarea>
+    <label>Категории:</label>
+    <input type="text" name="categories">
+    <button>Отредактировать товар</button>
+  </form>  
+
+  <form id="delete-product-form">
+    <label>Идентификатор товара:</label>
+    <input type="number" name="id">
+    <button>Удалить товар</button>
+  </form>
+
+  <script>
+    const addProductForm = document.getElementById('add-product-form');
+    const editProductForm = document.getElementById('edit-product-form');
+    const deleteProductForm = document.getElementById('delete-product-form');
+
+    addProductForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = addProductForm.name.value;
+  const price = addProductForm.price.value;
+  const description = addProductForm.description.value;
+  const categories = addProductForm.categories.value;
+  const newProduct = {
+    name: name,
+    price: price,
+    description: description,
+    categories: categories
+  };
+  fetch('/api/products', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newProduct)
+  })
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+});
+
+
+    editProductForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = editProductForm.id.value;
+      const product = {
+        name: editProductForm.name.value,
+        price: editProductForm.price.value,
+        description: editProductForm.description.value
+      };
+      fetch(`/api/products/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    });editProductForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const id = editProductForm.id.value;
+  const name = editProductForm.name.value;
+  const price = editProductForm.price.value;
+  const description = editProductForm.description.value;
+  const categories = editProductForm.categories.value;
+  const updatedProduct = {
+    id: id,
+    name: name,
+    price: price,
+    description: description,
+    categories: categories
+  };
+  fetch(`/api/products/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedProduct)
+  })
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+});
+
+
+deleteProductForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const id = deleteProductForm.id.value;
+  fetch(`/api/products/${id}`, {
+    method: 'DELETE'
+  })
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+});
+
+  </script>
+</body>
+</html>
